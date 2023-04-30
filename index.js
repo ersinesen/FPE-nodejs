@@ -19,10 +19,11 @@ function verifyToken(req, res, next) {
     console.log("Authorized.");
     next();
   } else {
-    res.status(401).send('Unauthorized');
+    res.status(401).json({ error: 'Unauthorized' });
   }
 }
 
+// generate random for string in case you need
 app.get('/random/:length', verifyToken, async (req, res) => {
   const { length } = req.params;
   const randomString = crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
@@ -46,7 +47,7 @@ app.post('/encrypt', verifyToken, async (req, res) => {
   }
   catch (error) {
     console.error('Encryption failed:', error);
-    res.status(401).send('Encryption error.');
+    res.status(401).json({ error: 'Encryption error.' });
   }
 
 });
@@ -66,7 +67,7 @@ app.post('/decrypt', verifyToken, async (req, res) => {
   }
   catch (error) {
     console.error('Encryption failed:', error);
-    res.status(401).send('Encryption error.');
+    res.status(401).json({ error: 'Encryption error.' });
   }
 
 });
@@ -92,7 +93,7 @@ app.post('/encrypt/email', verifyToken, async (req, res) => {
   }
   catch (error) {
     console.error('Encryption failed:', error);
-    res.status(401).send('Encryption error.');
+    res.status(401).json({ error: 'Encryption error.' });
   }
 });
 
@@ -116,7 +117,7 @@ app.post('/decrypt/email', verifyToken, async (req, res) => {
   }
   catch (error) {
     console.error('Encryption failed:', error);
-    res.status(401).send('Encryption error.');
+    res.status(401).json({ error: 'Encryption error.' });
   }
 });
 
@@ -150,7 +151,7 @@ app.post('/encrypt/cc', verifyToken, async (req, res) => {
   }
   catch (error) {
     console.error('Encryption failed:', error);
-    res.status(401).send('Encryption error.');
+    res.status(401).json({ error: 'Encryption error.' });
   }
 });
 
@@ -183,7 +184,7 @@ app.post('/decrypt/cc', verifyToken, async (req, res) => {
   }
   catch (error) {
     console.error('Decryption failed:', error);
-    res.status(401).send('Decryption error.');
+    res.status(401).json({ error: 'Decryption error.' });
   }
 });
 

@@ -2,14 +2,15 @@
 # Use http even if accessing https, replit proxy handles https connection
 
 # Encrypt
-#curl -v -k -X POST \
-#  http://localhost:3000/encrypt \
-#  -H 'Authorization: Bearer WRONGTOKEN' \
-#  -H 'Content-Type: application/json' \
-#  -d '{
-#        "key": "mysharedkey",
-#        "data": "hello world"
-#      }'
+curl -k -X POST \
+  http://localhost:3000/encrypt \
+  -H 'Authorization: Bearer WRONGTOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "key": "mysharedkey",
+        "data": "hello world"
+      }'
+echo
 
 TOKEN='BPmNB3+ngfs9vjUHdghftJq+DwfJ9fZz5GTIqNcDLxg='
 KEY='10ad65a954d5e5cf'
